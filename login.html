@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Restringido - ghost.cc</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #0d0d0d;
+            color: #33ff33;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            animation: glitch-bg 5s infinite alternate;
+        }
+
+        /* Título grande, ajustado para pantallas móviles */
+        h1 {
+            font-size: 3em;
+            margin: 0;
+            color: #33ff33;
+            text-shadow: 0 0 10px #33ff33, 0 0 20px #ff00ff, 0 0 30px #00ffff;
+            animation: glitch 2s infinite;
+        }
+
+        /* Contenedor del login */
+        .login-container {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+            width: 90%;
+            max-width: 400px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Input de contraseña mejorado para móviles */
+        input[type="password"] {
+            padding: 15px;
+            margin: 20px 0;
+            width: 100%;
+            border: 2px solid #33ff33;
+            background-color: black;
+            color: #33ff33;
+            border-radius: 5px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+
+        /* Botón de ingresar más grande para móviles */
+        input[type="button"] {
+            padding: 15px;
+            width: 100%;
+            background-color: #33ff33;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+
+        input[type="button"]:hover {
+            background-color: #28cc28;
+        }
+
+        /* Mensaje de error */
+        #error-message {
+            color: red;
+            margin-top: 10px;
+        }
+
+        /* Animaciones de glitch */
+        @keyframes glitch {
+            0% {
+                text-shadow: 0 0 5px #33ff33, 0 0 10px #33ff33, 0 0 15px #ff00ff, 0 0 20px #00ffff;
+            }
+            50% {
+                text-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff, 0 0 15px #33ff33, 0 0 20px #ff00ff;
+                transform: translate(3px, -3px);
+            }
+            100% {
+                text-shadow: 0 0 5px #00ffff, 0 0 10px #ff00ff, 0 0 15px #33ff33, 0 0 20px #33ff33;
+                transform: translate(-3px, 3px);
+            }
+        }
+
+        @keyframes glitch-bg {
+            0% { background-color: #0d0d0d; }
+            50% { background-color: #050505; }
+            100% { background-color: #0d0d0d; }
+        }
+
+        /* Animación de entrada suave */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Ajustes específicos para pantallas pequeñas */
+        @media only screen and (max-width: 600px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            .login-container {
+                width: 95%;
+            }
+            input[type="password"], input[type="button"] {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>ghost.cc</h1>
+        <input type="password" id="password" placeholder="Contraseña">
+        <input type="button" value="Ingresar" onclick="checkPassword()">
+        <p id="error-message" style="display: none;">Contraseña incorrecta</p>
+    </div>
+
+    <script>
+        function checkPassword() {
+            var password = document.getElementById('password').value;
+            if (password === '1511Luna@') {
+                localStorage.setItem('access_granted', 'true');
+                window.location.href = 'index.html';
+            } else {
+                document.getElementById('error-message').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
